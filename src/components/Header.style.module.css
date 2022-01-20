@@ -1,0 +1,48 @@
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(45deg, #d8eff177, #67bcc45e);
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+.menu_items {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.btn {
+    padding-right: 40px;
+    margin: 10px 5px 5px 5px;
+    border: .5px;
+    border-style: groove;
+    border-radius: 3px;
+    background-color: #5ec4cd80;
+}
+
+.btn:hover {
+    background-color: #5ec4cdbb;
+    cursor: pointer;    
+}
+
+.btn:active {
+    background-color: #5ec4cd;        
+}
+
+.logo_img {
+    max-width: 40px;
+    margin-right: 40px;
+}
+
+.logo_img:hover {   
+    transition: all 0.5s ease-in-out;
+    transform: translateX(50px);
+}
