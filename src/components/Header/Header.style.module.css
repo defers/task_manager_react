@@ -26,6 +26,7 @@
     border-style: groove;
     border-radius: 3px;
     background-color: #5ec4cd80;
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover {
@@ -40,6 +41,7 @@
 .logo_img {
     max-width: 40px;
     margin-right: 40px;
+    margin-left: 10px;
 }
 
 .logo_img:hover {   
