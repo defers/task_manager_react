@@ -11,6 +11,13 @@
 
 }
 
+.task:hover {
+    /* background-color: #7dd6e40e; */
+    background-color: #7dd6e43a;
+    cursor: pointer;
+    transition: all 0.6s ease-in-out;
+}
+
 .taskDescription {
     padding: 20px;
 }

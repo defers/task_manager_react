@@ -5,11 +5,11 @@ const Tasks = ({ tasks }) => {
     return(
     
     <div className={s.tasksContainer}>
-        {[].so}
+        
         { (tasks != undefined) ?
             tasks
                 .sort((a,b) =>  
-                    new Date(b.data).getTime() - new Date(a.data).getTime())
+                    new Date(a.data).getTime() - new Date(b.data).getTime())
                 .map((task) =>
                     <Task key={task.id} task={task}></Task>) 
             : null
