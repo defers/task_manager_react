@@ -19,6 +19,8 @@ const Task = ({ task }) => {
         </div>
 
     </div>
+
+    
     
     )
 
