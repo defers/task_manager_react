@@ -1,11 +1,15 @@
 import { Navigate } from "react-router-dom";
+import AuthService from "./ServiceAuth";
 
-const PrivateRoute = ({ children, isauth }) => {
-  if (isauth === undefined) {
-    return <Navigate to="/" />;
+const PrivateRoute = ({ children }) => {
+
+  let isAuth = AuthService.isAuthenticated();
+
+  if (isAuth === undefined) {
+    return <Navigate to="/login" />;
   }
 
-  return isauth ? children : <Navigate to="/login" />;
+  return isAuth ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

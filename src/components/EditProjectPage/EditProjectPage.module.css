@@ -1,17 +1,14 @@
 
-.loginpage_container {
+.container {
 
-    display: flex;
-   
+    display: flex;   
     flex-direction: column;
     height: 100vh;
-    background: linear-gradient(45deg, #d8eff177, #67bcc45e);
 
 }
 
-.form_login {
-    
-    
+.form {
+       
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -32,7 +29,7 @@
 
 }
 
-.form_login label {
+.form label {
 
     width: 80px;
     margin: 10px;
@@ -47,8 +44,6 @@
     padding:0;
     border-radius: 5px;
     padding: 5px;
-
-
 
 }
 
