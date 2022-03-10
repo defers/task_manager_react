@@ -19,22 +19,39 @@ const Header = () => {
   
   return (
     <header className={s.header}>
-      <div className={s.menu_items}>
-        <PacmanSvg className={s.logo_img}></PacmanSvg>
+      
+      <PacmanSvg className={s.logo_img}></PacmanSvg>  
 
-        <NavLink to="/" className={s.btn}>
-          Home
-        </NavLink>
-        <NavLink to="/tasks" className={s.btn}>
-          Tasks
-        </NavLink>
-        <NavLink to="/users" className = {s.btn}>Users</NavLink>
-        <NavLink to="/projects" className = {s.btn}>Projects</NavLink>
+      <div className={s.menu}>
         
+        <input id={s.menu_toggle} type="checkbox" />
+        <label class={s.menu_button_container} for={s.menu_toggle}>
+          <div class={s.menu_button}></div>
+        </label>
+
+        <ul className={s.list_menu}>
+          <li className={s.menu_element}>
+            <NavLink to="/" className={s.btn}>Home</NavLink>
+          </li>
+          <li className={s.menu_element}>
+            <NavLink to="/tasks" className={s.btn}>Tasks</NavLink>
+          </li>
+          
+          <li className={s.menu_element}>
+            <NavLink to="/users" className = {s.btn}>Users</NavLink>
+          </li>
+          <li className={s.menu_element}>
+            <NavLink to="/projects" className = {s.btn}>Projects</NavLink>
+          </li>
+
+          <li className={s.menu_element}>
+            {isAuth ? <NavLink to="/login" className = {s.btn} onClick = {logoutHandler}>Logout</NavLink> : null}
+          </li>
+
+        </ul>
       </div>
-      <div className={s.menu_right}></div>
-        {isAuth ? <NavLink to="/login" className = {s.btn} onClick = {logoutHandler}>Logout</NavLink> : null}
-      <div/>
+
+
     </header>
   );
 };

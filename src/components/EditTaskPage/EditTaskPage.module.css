@@ -38,10 +38,9 @@
     width: 80px;
     margin: 10px;
     padding: 5px;
-    text-transform: uppercase;
 }
 
-.input {
+.input, select {
 
     width: 70%;
     margin:10px;

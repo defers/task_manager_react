@@ -1,38 +1,59 @@
 import s from "./EditTaskPage.module.css";
 import StandartButton from "../Buttons/StandartButton/StandartButton.component";
 import TasksService from "../../service/TasksService";
+import ProjectService from "../../service/ProjectService";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
-import AuthService from "../../authentification/ServiceAuth.js"
+import AuthService from "../../authentification/ServiceAuth.js";
 
 const EditTaskPage = () => {
   let navigate = useNavigate();
   let { id } = useParams();
   let [isLoaded, toggleIsLoaded] = useState(false);
+  let [isLoadedProjects, toggleIsLoadedProjects] = useState(false);
 
   useEffect(() => {
     if (id && !isLoaded) {
       TasksService.findTaskById(id).then((response) => {
         let data = response.data;
+        
         setTaskFormValue({
           id: data.id,
           description: data.description,
           date: data.date,
+          projectId: data.projectId,
         });
+        
         toggleIsLoaded(true);
-      });
-    }
+        });
+    };
+
+    if (id && !isLoadedProjects) {
+        ProjectService
+        .getProjects()
+        .then((response) => {
+            let data = response.data;
+            debugger
+            setProjects(data);
+            toggleIsLoadedProjects(true);
+            console.log("projects: " + data)
+        });
+    };
+
   });
 
   const [taskFormValue, setTaskFormValue] = useState({
     id: "",
     description: "",
     date: "",
+    projectId: null
   });
 
-  const handleChange = (event) => {
+  const [projects, setProjects] = useState([]);
 
+  const handleChange = (event) => {
+    
     setTaskFormValue({
       ...taskFormValue,
       [event.target.name]: event.target.value,
@@ -45,7 +66,7 @@ const EditTaskPage = () => {
     let isAuth = AuthService.isAuthenticated();
 
     if (!isAuth) {
-      navigate("/login")
+      navigate("/login");
     }
 
     taskFormValue.date = moment(new Date()).format("YYYY-MM-DDTHH:mm:ss");
@@ -90,6 +111,34 @@ const EditTaskPage = () => {
             readOnly
             value={taskFormValue.date}
           />
+        </div>
+
+        <div className={s.input_block}>
+            <label for="project">Project:</label>
+
+            <select 
+              name="projectId" 
+              id="projectId" 
+              value={taskFormValue.projectId ? taskFormValue.projectId : 0}
+              onChange={handleChange}
+            >
+                <option value="">--Please choose an option--</option>
+                { projects 
+                    ? projects.map((project) => {
+                        console.log("option: " + project) 
+                        return(
+                            <option 
+                                key = {project.id} 
+                                value={project.id}                              
+                            >
+                                {project.name}
+                            </option>  
+                         )
+                    })
+                    : null
+                   }
+
+            </select>
         </div>
 
         <StandartButton

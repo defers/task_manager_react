@@ -10,11 +10,10 @@ const Task = ({ task, activeTaskHandler, isActive }) => {
         <div className = {s.taskHeader}>
             <p>Id: {task.id}</p>
             <time dateTime={task.date}>
-                Date created: {task.date.toLocaleString('ru-RU')}
+                Date created: {task.date ? task.date.toLocaleString('ru-RU'): null}
             </time>
-            <p>Author:</p>
-            <p>Project:</p>
-            <p>{isActive ? "TRUE" : "FALSE"}</p>
+            <p>Author: {task.user}</p>
+            <p>Project: {task.projectName}</p>
         </div>
 
         <div className = {s.taskDescription}>

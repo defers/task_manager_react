@@ -6,10 +6,9 @@ import Home from "./components/Home/Home.component.jsx";
 import Tasks from "./components/Tasks/Tasks.component";
 import LoginPage from "./components/LoginPage/LoginPage.component";
 import PrivateRoute from "./authentification/ProtectedRoute.component";
-import AuthService from "./authentification/ServiceAuth.js";
 import EditTaskPage from "./components/EditTaskPage/EditTaskPage.component";
 import EditProjectPage from "./components/EditProjectPage/EditProjectPage.component";
-import TasksService from "./service/TasksService";
+import Users from "./components/UsersPage/Users.component";
 import Projects from "./components/ProjectsPage/Projects.component";
 
 class App extends React.Component {
@@ -84,7 +83,7 @@ class App extends React.Component {
               element={
                 <PrivateRoute>
                   <Header />
-                  
+                  <Users/>
                 </PrivateRoute>
               }
             />

@@ -1,14 +1,14 @@
-import s from "./Projects.style.module.css";
+import s from "./Users.style.module.css";
 
 import ControlPanel from '../ControlPanel/ControlPanel.component';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import ProjectService from '../../service/ProjectService';
+import UserService from '../../service/UserService';
 import AuthService from "../../authentification/ServiceAuth";
-import Project from "../Project/Project.component";
+import ElementCard from "../ElementCard/ElementCard.component";
 
 
-const Projects = () => {
+const Users = () => {
 
 // vars
     const panelButtons = [
@@ -22,7 +22,7 @@ const Projects = () => {
 
     const addHandler = (e) => {
         e.preventDefault();
-        navigate("/projects/project/add");       
+        navigate("/users/user/add");       
     }
 
     const delHandler = (e) => {
@@ -35,38 +35,38 @@ const Projects = () => {
         }
 
         if (activeElement) {
-            ProjectService
+            UserService
                 .deleteProject(activeElement.id)
                 .then(response => setData());
         }   
 
     }
 
-    const editHandler = (project) => {
-        if (project) {
-            navigate(`/projects/project/${project.id}`);    
+    const editHandler = (user) => {
+        if (user) {
+            navigate(`/users/user/${user.id}`);    
         }
     }
 
     const [activeElement, setActiveElement] = useState({}); 
 
-    const onClickHandler = (project) => {
+    const onClickHandler = (user) => {
         
-        setActiveElement({...project});
+        setActiveElement({...user});
         
     };
 
-    const [projects, setProjects] = useState([]); 
+    const [users, setUsers] = useState([]); 
 
     const setData = () => {
-        
-        ProjectService
-            .getProjects()
+
+        UserService
+            .getUsers()
             .then((response) => {
-                setProjects(response.data);
-                }   
-            )
-            .catch(error => console.log("ERRRROR: " + error.message));
+                setUsers(response.data);
+                console.log(response.data)
+            }   
+        );
         
     }
 
@@ -76,17 +76,18 @@ const Projects = () => {
 
     // Service
 
-    const isActive = (project, activeElement) => {
+    const isActive = (user, activeElement) => {
    
-        if (activeElement && activeElement.id == project.id) {
+        if (activeElement && activeElement.id == user.id) {
             return true;
         }
 
         return false;
     }
 
+
     return(
-        <div className = {s.projects_container}>
+        <div className = {s.users_container}>
             <ControlPanel 
                 addHandler = {addHandler}
                 delHandler = {delHandler} 
@@ -94,19 +95,19 @@ const Projects = () => {
                 buttons = {panelButtons}
             />
 
-            { (projects !== undefined && projects.length) 
-                ? projects
+            { (users !== undefined && users.length) 
+                ? users
                     .sort((a,b) => a.id - b.id)
-                    .map((project) =>
-                        <Project key={project.id} 
-                            project={project} 
+                    .map((user) =>
+                        <ElementCard key={user.id} 
+                            element={user} 
                             activeHandler = {onClickHandler}
-                            isActive = {isActive(project, activeElement)}>
-                        </Project>) 
+                            isActive = {isActive(user, activeElement)}>
+                        </ElementCard>) 
                 : null
             } 
         </div>
     )
 }
 
-export default Projects;
+export default Users;

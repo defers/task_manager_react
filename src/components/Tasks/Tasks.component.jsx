@@ -94,7 +94,14 @@ const Tasks = () => {
         { (tasks !== undefined && tasks.length) 
             ? tasks
                 .sort((a,b) =>  
-                    {return (a.date.getTime() - b.date.getTime())})
+                    {
+                        if (a.date == null || b.date ==null) {
+                            return 1;
+                        }
+
+                        return (
+                        a.date.getTime() - b.date.getTime())
+                    })
                 .map((task) =>
                     <Task key={task.id} 
                           task={task} 

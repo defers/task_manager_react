@@ -1,34 +1,34 @@
-
 import axios from "axios";
 import { getApiUrl } from "../properties/Properties.js";
 import authHeader from "../authentification/authHeader.js";
 
 const API_URL = getApiUrl();
-const TASK_URL = "api/v1/projects";
+const TASK_URL = "api/v1/users";
 
-class ProjectService {
+class UserService {
   
     getHeader() {
       return { headers: authHeader() }
     }
-    getProjects() {
+    getUsers() {
         let header = this.getHeader();
-        let projects = axios.get(API_URL + TASK_URL, header);
-        return projects;
+        
+        return axios
+          .get(API_URL + TASK_URL, header);
       }
     
-      saveProject(project) {
+      saveUser(user) {
         
         let header = this.getHeader();
     
         return axios.post(
           API_URL + TASK_URL + "/save",
-          project,
+          user,
           header
         )
       }
     
-      deleteProject(id) {
+      deleteUser(id) {
     
         let header = this.getHeader();
     
@@ -38,7 +38,7 @@ class ProjectService {
         )
       }
     
-      findProjectById(id) {
+      findUserById(id) {
         
         let header = this.getHeader();
     
@@ -49,4 +49,4 @@ class ProjectService {
     
       }
 }
-export default new ProjectService();
+export default new UserService();
