@@ -26,6 +26,7 @@ class AuthService {
       .then((response) => {
         if (response.data.jwttoken) {
           window.localStorage.setItem("jwttoken", JSON.stringify(response.data));
+          window.localStorage.setItem("username", username);
 
         }
 
@@ -34,6 +35,7 @@ class AuthService {
   }
   logout() {
     localStorage.removeItem("jwttoken");
+    localStorage.removeItem("username");
   }
   register(username, email, password) {
     return axios.post(API_URL + "signup", {

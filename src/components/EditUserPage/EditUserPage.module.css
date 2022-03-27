@@ -47,6 +47,16 @@
 
 }
 
+.checkbox {
+
+    width: 15px;
+    margin:10px;
+    padding:0;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
 .input_readonly {
     background: linear-gradient(45deg, #d8eff177, #67bcc45e);
     cursor:auto;

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import TasksService from '../../service/TasksService';
 import AuthService from "../../authentification/ServiceAuth";
+import SidePanel from '../SidePanel/SidePanel.component';
 
 const Tasks = () => {
     
@@ -12,7 +13,8 @@ const Tasks = () => {
     const panelButtons = [
         "ADD",
         "DELETE",
-        "EDIT"
+        "EDIT",
+        "SELECTION"
     ];    
 
  // Handlers
@@ -41,7 +43,7 @@ const Tasks = () => {
     }
 
     const editTaskHandler = (task) => {
-        if (task) {
+        if (task.id) {
             navigate(`/tasks/task/${task.id}`);    
         }
     }
@@ -65,6 +67,12 @@ const Tasks = () => {
         
     }
 
+    const [isOpenedSelectionPanel, toggleSelectionPanel] = useState(false); 
+
+    const openSelectionSideBar = () => {
+        toggleSelectionPanel(!isOpenedSelectionPanel);
+    }
+
     useEffect(() => { 
         setTasksData()
     }, []);
@@ -81,13 +89,18 @@ const Tasks = () => {
     }
 
     return(
-    
+    <>
+    <SidePanel 
+        isOpened={isOpenedSelectionPanel}
+        togglerOpenSelection = {toggleSelectionPanel}
+    />    
     <div className={s.tasksContainer}>
-    
+           
         <ControlPanel 
             addHandler = {addTaskHandler}
             delHandler = {delTaskHandler} 
-            editHandler = {()=>editTaskHandler(activeTask)} 
+            editHandler = {()=>editTaskHandler(activeTask)}
+            selectionHandler = {openSelectionSideBar} 
             buttons = {panelButtons}
         />
 
@@ -109,9 +122,11 @@ const Tasks = () => {
                           isActive = {isActive(task, activeTask)}>
                     </Task>) 
             : null
-        } 
-        
-    </div>);
+        }     
+    </div>
+    
+    </>
+    );
 }
 
 export default Tasks;

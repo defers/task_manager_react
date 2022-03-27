@@ -1,7 +1,7 @@
 import s from "./ControlPanel.module.css";
 import StandartButton from "../Buttons/StandartButton/StandartButton.component";
 
-const ControlPanel = ( {addHandler, delHandler, editHandler, buttons} ) => {
+const ControlPanel = ( {addHandler, delHandler, editHandler, selectionHandler, buttons} ) => {
     
     return(
         <div className= {s.container}>
@@ -13,7 +13,10 @@ const ControlPanel = ( {addHandler, delHandler, editHandler, buttons} ) => {
                 ? <StandartButton buttonValue = "del" handler = {delHandler}/> : null}
 
             {buttons.find(button => button.startsWith("EDIT")) 
-                ? <StandartButton buttonValue = "edit" handler = {editHandler}/> : null}      
+                ? <StandartButton buttonValue = "edit" handler = {editHandler}/> : null} 
+
+            {buttons.find(button => button.startsWith("SELECTION")) 
+                ? <StandartButton buttonValue = "sel" handler = {selectionHandler}/> : null}      
             
         </div>
     )

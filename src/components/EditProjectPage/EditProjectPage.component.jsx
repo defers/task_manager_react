@@ -21,7 +21,7 @@ const EditProjectPage = () => {
         toggleIsLoaded(true);
       });
     }
-  });
+  }, []);
 
   const [projectFormValue, setProjectFormValue] = useState({
     id: "",
@@ -56,7 +56,7 @@ const EditProjectPage = () => {
           <input
             type={"text"}
             readOnly
-            className={s.input}
+            className={s.input + " " + s.input_readonly}
             name="id"
             id="id"
             value={projectFormValue.id}

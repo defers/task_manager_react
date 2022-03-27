@@ -20,7 +20,7 @@ class UserService {
       saveUser(user) {
         
         let header = this.getHeader();
-    
+   
         return axios.post(
           API_URL + TASK_URL + "/save",
           user,
@@ -33,7 +33,7 @@ class UserService {
         let header = this.getHeader();
     
         return axios.delete(
-          API_URL + TASK_URL + "/" + id,
+          API_URL + TASK_URL + "/delete/" + id,
           header 
         )
       }
@@ -48,5 +48,6 @@ class UserService {
         )
     
       }
+
 }
 export default new UserService();

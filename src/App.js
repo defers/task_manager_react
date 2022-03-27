@@ -8,6 +8,7 @@ import LoginPage from "./components/LoginPage/LoginPage.component";
 import PrivateRoute from "./authentification/ProtectedRoute.component";
 import EditTaskPage from "./components/EditTaskPage/EditTaskPage.component";
 import EditProjectPage from "./components/EditProjectPage/EditProjectPage.component";
+import EditUserPage from "./components/EditUserPage/EditUserPage.component";
 import Users from "./components/UsersPage/Users.component";
 import Projects from "./components/ProjectsPage/Projects.component";
 
@@ -87,6 +88,18 @@ class App extends React.Component {
                 </PrivateRoute>
               }
             />
+
+            <Route
+              path="/users/user/:id"
+              exact
+              element={
+                <PrivateRoute>
+                  <Header />
+                  <EditUserPage />
+                </PrivateRoute>
+              }
+            />
+
             if ({!this.state.isAuth}){" "}
             {<Route path="login" exact element={<LoginPage />} />}
           </Routes>

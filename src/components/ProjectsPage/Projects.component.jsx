@@ -43,7 +43,7 @@ const Projects = () => {
     }
 
     const editHandler = (project) => {
-        if (project) {
+        if (project.id) {
             navigate(`/projects/project/${project.id}`);    
         }
     }
